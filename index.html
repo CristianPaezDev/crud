@@ -8,30 +8,53 @@
 </head>
 <body>
 <main>
-    <h1>Formulario</h1>
-    <form action="">
-
-        <input type="text" id="id" placeholder="Ingresa tu ID">
-
-        <input type="text" id="nombre" placeholder="Ingresa tu Nombre">
-
-        <input type="text" id="apellido" placeholder="Ingresa tu Apellido">
-
-        <select name="select" >
-            <option value="">Seleciona</option>
-
-
-
-        </select>
+    <article class="formulario">
+        <div>
+            <h1>Formulario</h1>
+            <form action="" class="formularios">
         
-        <input type="email" id="num_doc" placeholder="num de documento">
+                <!-- <input type="text" id="id" placeholder="Ingresa tu ID"> -->
         
-        <input type="email" id="correo" placeholder="Ingresa tu Correo">
+                <input type="text" id="nombre" placeholder="Ingresa tu Nombre">
+        
+                <input type="text" id="apellido" placeholder="Ingresa tu Apellido">
+        
+                <select name="select" id="tipo">
+                    <option value="">Seleciona</option>
+                </select>
+                
+                <input type="text" id="num_doc" placeholder="num de documento">
+                
+                <input type="email" id="correo" placeholder="Ingresa tu Correo">
+        
+                <input type="text" id="direccion" placeholder="Ingresa tu Direccion">
+        
+                <button type="submit">Registrar</button>
+                <button type="button" id="btnlistar">Listar</button>
+            </form>
+        </div>
+    </article>
 
-        <input type="text" id="direccion" placeholder="Ingresa tu Direccion">
+    <div class="tb">
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Tipo de documento</th>
+                    <th>Numero de documento</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaUsuarios">
 
-        <button>Registrar</button>
-    </form>
+            </tbody>
+        </table>
+    </div>
+
 </main>
 <script src="app.js"></script>
 </body>
