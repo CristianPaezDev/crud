@@ -6,16 +6,19 @@
 
 .formulario{
     width: 100vw;
-    height: 100vh;
+    height: 100vh;  
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* main{
-    display: flex;
-    flex-direction: column;
-} */
+.bien{
+  border:  solid 2px #b2fab6;
+}
+
+.mal{
+  border:  solid 2px #ff7676;
+}
 
 h1{
     margin: 30px;
@@ -23,7 +26,7 @@ h1{
 }
 
 .formularios {
-    width: 450px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,20 +37,21 @@ h1{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input{
+.input{
     width: 300px;
     height: 44px;
     border-radius: 8px;
     margin: 2vh;
     border: none;
     padding-left: 10px;
+    outline: none;
 }
 
-input:hover{
+/* .input:hover{
     transform:scale(1.2 );
     transition: all 0.7s;
     border:  solid 2px #b2fab6;
-}
+} */
 
 select{
     width: 300px;
@@ -61,7 +65,7 @@ select{
 select:hover{
     transform:scale(1.2);
     transition: all 0.7s;
-    border:  solid 2px #b2fab6;
+    /* border:  solid 2px #b2fab6; */
 }
 
 button{
@@ -71,6 +75,7 @@ button{
     border-radius: 8px;
     border: none;
 }
+
 
 button:hover{
     transform:scale(1.2);
