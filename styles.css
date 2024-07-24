@@ -12,14 +12,6 @@
     align-items: center;
 }
 
-.bien{
-  border:  solid 2px #b2fab6;
-}
-
-.mal{
-  border:  solid 2px #ff7676;
-}
-
 h1{
     margin: 30px;
     text-align: center;
@@ -46,7 +38,13 @@ h1{
     padding-left: 10px;
     outline: none;
 }
+.bien{
+  border:  solid 2px #b2fab6;
+}
 
+.mal{
+  border:  solid 2px #ff7676;
+}
 /* .input:hover{
     transform:scale(1.2 );
     transition: all 0.7s;
