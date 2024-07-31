@@ -1,4 +1,4 @@
-export default function correos(event, element) {
+export function correos(event, element) {
     let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (regex.test(event.value)) {
         element.classList.remove("mal")

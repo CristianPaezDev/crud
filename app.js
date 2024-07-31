@@ -1,6 +1,7 @@
-import letras from "./letras.js"
-import numeros from "./numeros.js"
-import correos from "./correos.js"
+import {letras} from "./letras.js"
+import {numeros} from "./numeros.js"
+import {correos} from "./correos.js"
+import is_valid from "./is_valid.js"
 
 const selec = document.querySelector('form > select')
 
@@ -12,7 +13,7 @@ let num_doc = document.querySelector("#num_doc")
 let correo = document.querySelector("#correo")
 let direccion = document.querySelector("#direccion")
 let telefono = document.querySelector("#telefono")
-
+let chec = document.querySelector("#checkbox")
 
 async function consultar(){
     const data = await fetch("http://127.0.0.1:3000/documentos")
@@ -25,18 +26,41 @@ async function consultar(){
     }); 
 }
 
-async function envia(datos){
-    fetch('http://localhost:3000/users', {
-        method: 'POST',
-        body: JSON.stringify(datos),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-}
+form.addEventListener('submit', (event) => {
+    let response = is_valid(event, "form [required]");
 
+    const data = {
+        nombre: nombre.value,
+        apellido: apellido.value,
+        tipo: tipo.value,
+        num_doc: num_doc.value,
+        correo: correo.value,
+        direccion: direccion.value,
+        telefono: telefono.value
+    }
+    console.log(data);
+
+    if(response){
+        fetch('http://localhost:3000/users',{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            nombre.value = "";
+            apellido.value = "";
+            tipo.value = "";
+            num_doc.value = "";
+            correo.value = "";
+            direccion.value = "";
+            telefono.value = "";
+            chec.checked = false;
+        });
+    }
+})
 
 nombre.addEventListener('keypress', function(event){
     letras(event, nombre)
@@ -78,25 +102,6 @@ correo.addEventListener('blur', function(event){
     correos(event, correo)
 })
 
-    
-
-const capturar = (event) => {
-    event.preventDefault()
-    const datos = {
-        "nombre": nombre.value,
-        "apellido": apellido.value,
-        "tipo": tipo.value,
-        "num_doc": num_doc.value,
-        "correo": correo.value,
-        "direccion": direccion.value,
-        "telefono": telefono.value
-    }
-    envia(datos)
-
-    location.reload();
-}
-
-form.addEventListener("submit", capturar)
 
 
 document.addEventListener('DOMContentLoaded', function() {

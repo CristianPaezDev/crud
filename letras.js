@@ -1,4 +1,4 @@
-export default function letras(event, elemento) {
+export function letras(event, elemento) {
     let regex = /^[a-zA-Zá\s]+$/;   
 
     if (elemento.value === ""){
