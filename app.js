@@ -1,6 +1,7 @@
 import {letras} from "./letras.js"
 import {numeros} from "./numeros.js"
 import {correos} from "./correos.js"
+import peticion from "./nuevo.js"
 import is_valid from "./is_valid.js"
 
 const selec = document.querySelector('form > select')
@@ -15,15 +16,36 @@ let direccion = document.querySelector("#direccion")
 let telefono = document.querySelector("#telefono")
 let chec = document.querySelector("#checkbox")
 
-async function consultar(){
-    const data = await fetch("http://127.0.0.1:3000/documentos")
-    const tipos = await data.json()
-    
-    tipos.forEach(element => {
-        let options = document.createElement('option')
-        selec.appendChild(options)
-        options.innerText = element.nombre
-    }); 
+const documentos = () =>{
+    const fragemento = document.createDocumentFragment();
+    let options = document.createElement('option');
+        options.innerText = "selector del tipo de documento"  
+        fragemento.appendChild(options);  
+    peticion("documentos")
+    .then(data => {
+        data.forEach(element => {
+            // let options = document.createElement('option')
+            // selec.appendChild(options)
+            // options.innerText = element.nombre
+            let nombre = element.nombre;
+            let id = element.id;
+            let option = document.createElement('option');
+
+            option.setAttribute("value", id) 
+            option.innerText = nombre
+            fragemento.appendChild(option);         
+        });
+        tipo.appendChild(fragemento)
+    })
+}
+
+const listar = async () => {
+    peticion("users")
+    .then(data => {
+        data.forEach(element => {
+            console.log(element)
+        })
+    })
 }
 
 form.addEventListener('submit', (event) => {
@@ -106,7 +128,8 @@ correo.addEventListener('blur', function(event){
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    consultar();
+    documentos();
+    listar();
 
     const btnListar = document.getElementById('btnlistar');
     const tablaContainer = document.querySelector('.tb');
@@ -122,12 +145,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     tablaContainer.style.display = 'none';
-});
+ });
 
-const listar = async () => {
-    const element = await fetch(`http://localhost:3000/users`)
-    const elemento = await element.json();
-    return elemento;
-}
+
 
 
